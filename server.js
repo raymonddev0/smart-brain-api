@@ -31,8 +31,8 @@ app.get('/profile/:id', (req, res)=>{profile.handleProfileGet(req, res, db)})
 app.put('/image', (req, res)=>(image.handleImage(req, res, db)))
 app.post('/imageurl', (req, res)=>(image.handleApiCall(req, res)))
 
-app.listen (3333, () => {
-	console.log('app is running on port 3333');
+app.listen (process.env.PORT || 3333, () => {
+	console.log(`app is running on port ${process.env.PORT}`);
 })
 
 /*this are the endpoints that we expect
