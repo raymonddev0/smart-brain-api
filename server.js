@@ -37,7 +37,7 @@ app.post('/imageurl', (req, res)=>(image.handleApiCall(req, res)))
 
 app.listen (process.env.PORT || 3333, () => {
 	console.log(`app is runnnnning on port ${process.env.PORT}`)
-	console.log(`app is runnnnning on port ${process.env.NODE_ENV}` mode)
+	console.log(`app is runnnnning on port ${process.env.NODE_ENV} mode`)
 })
 
 /*this are the endpoints that we expect
