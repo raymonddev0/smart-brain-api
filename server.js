@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
@@ -8,12 +9,17 @@ const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
+const isDev = (process.env.NODE_ENV === 'dev');
 
 const db = knex({
   client: 'pg',
   connection: {
-    connectionString : process.env.DATABASE_URL,
-   	ssl: true
+  	host: !isDev ? process.env.PG_HOST : '127.0.0.1',
+  	user: !isDev ? process.env.PG_USER : '',
+  	password: !isDev ? process.env.PG_PASSWORD : '',
+  	database: !isDev ? process.env.PG_DATABASE : 'smart-brain',
+    //connectionString : process.env.DATABASE_URL,
+   	ssl: !isDev ? true : false
   }
 });
 
@@ -30,7 +36,8 @@ app.put('/image', (req, res)=>(image.handleImage(req, res, db)))
 app.post('/imageurl', (req, res)=>(image.handleApiCall(req, res)))
 
 app.listen (process.env.PORT || 3333, () => {
-	console.log(`app is running on port ${process.env.PORT}`);
+	console.log(`app is runnnnning on port ${process.env.PORT}`)
+	console.log(`app is runnnnning on port ${process.env.NODE_ENV}` mode)
 })
 
 /*this are the endpoints that we expect
