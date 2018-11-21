@@ -18,7 +18,7 @@ const db = knex({
   	user: !isDev ? process.env.PG_USER : '',
   	password: !isDev ? process.env.PG_PASSWORD : '',
   	database: !isDev ? process.env.PG_DATABASE : 'smart-brain',
-    //connectionString : process.env.DATABASE_URL,
+    connectionString : process.env.DATABASE_URL,
    	ssl: !isDev ? true : false
   }
 });
